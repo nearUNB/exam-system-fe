@@ -1,0 +1,39 @@
+.btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 0;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: #003c78;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #03509e;
+}
+
+.btn-primary-outline {
+  background: #ffffff;
+  color: #003c78;
+  border: 1px solid #003c78;
+}
+
+.btn-primary-outline:hover {
+  background: #003c78;
+  color: #ffffff;
+}
+
+.btn-danger-outline {
+  background: #ffffff;
+  color: red;
+  border: 1px solid red;
+}
+
+.btn-danger-outline:hover {
+  background: red;
+  color: #ffffff;
+}
+

@@ -1,0 +1,53 @@
+:root {
+  --color-primary: #003c78;
+  --color-secondary: #ff6403;
+  --color-hover: #037ca4;
+  --color-bg: white;
+  --color-text: rgb(27, 27, 27);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: Arial, sans-serif;
+}
+
+/* Example usage */
+button.primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+button.secondary {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
+  box-sizing: border-box; /* ensures padding doesn’t overflow */
+  background: #fff; /* or dark background if using dark theme */
+  color: #333; /* input text color */
+}
+
+/* Focus effect */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+  border-color: var(--color-primary, #003c78);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 60, 120, 0.3);
+}
