@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../../services/api";
 import "./Exam.css";
@@ -24,21 +24,7 @@ export default function ExamPage() {
     fetchQuestions();
   }, [lessonId]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          autoSubmitExam();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [questions, answers, autoSubmitExam]);
-
-  const autoSubmitExam = async () => {
+  const autoSubmitExam = useCallback(async () => {
     try {
       const formattedAnswers = questions.map((q) => ({
         question_id: q.id,
@@ -56,7 +42,21 @@ export default function ExamPage() {
     } catch (err) {
       console.error(err);
     }
-  };
+  }, [answers, lessonId, navigate, questions]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          autoSubmitExam();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [autoSubmitExam]);
 
   const handleAnswerSelect = (questionId, answerId) => {
     setAnswers((prev) => ({ ...prev, [questionId]: answerId }));
