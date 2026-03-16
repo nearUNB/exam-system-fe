@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import { MdDeleteForever } from "react-icons/md";
@@ -17,18 +17,18 @@ export default function QuestionsPage() {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     try {
       const res = await api.get(`/questions/lesson/${lessonId}`);
       setQuestions(res.data.questions || []);
     } catch (err) {
       console.error(err);
     }
-  };
+  }, [lessonId]);
 
   useEffect(() => {
     fetchQuestions();
-  }, [lessonId]);
+  }, [lessonId, fetchQuestions]);
 
   const openCreateModal = () => {
     setEditingQuestion(null);

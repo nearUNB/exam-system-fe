@@ -34,7 +34,7 @@ export default function Header() {
     <header>
       <div className="container">
         <Link to="/">
-          <img src="/logo.png" className="headerLogo" />
+          <img src="/logo.png" className="headerLogo" alt="Цахим шалгалтын лого" />
         </Link>
         <nav>
           {!token && (

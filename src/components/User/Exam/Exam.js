@@ -36,7 +36,7 @@ export default function ExamPage() {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [questions, answers]);
+  }, [questions, answers, autoSubmitExam]);
 
   const autoSubmitExam = async () => {
     try {
