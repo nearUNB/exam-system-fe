@@ -59,7 +59,7 @@ export default function ExamPage() {
       timerRef.current = intervalId;
     };
 
-    const timeoutId = setTimeout(startTimer, 10000);
+    const timeoutId = setTimeout(startTimer, 5000);
 
     return () => {
       clearTimeout(timeoutId);
@@ -120,7 +120,9 @@ export default function ExamPage() {
         className="exam-form"
         onSubmit={(e) => {
           e.preventDefault();
-          const confirmSubmit = window.confirm("Та шалгалтыг илгээхдээ итгэлтэй байна уу?");
+          const confirmSubmit = window.confirm(
+            "Та шалгалтыг илгээхдээ итгэлтэй байна уу?",
+          );
           if (!confirmSubmit) return;
           handleSubmit();
         }}
