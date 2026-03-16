@@ -45,17 +45,28 @@ export default function ExamPage() {
   }, [answers, lessonId, navigate, questions]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          autoSubmitExam();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
+    const startTimer = () => {
+      const intervalId = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(intervalId);
+            autoSubmitExam();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      timerRef.current = intervalId;
+    };
+
+    const timeoutId = setTimeout(startTimer, 10000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [autoSubmitExam]);
 
   const handleAnswerSelect = (questionId, answerId) => {
