@@ -109,6 +109,8 @@ export default function ExamPage() {
         className="exam-form"
         onSubmit={(e) => {
           e.preventDefault();
+          const confirmSubmit = window.confirm("Та шалгалтыг илгээхдээ итгэлтэй байна уу?");
+          if (!confirmSubmit) return;
           handleSubmit();
         }}
       >

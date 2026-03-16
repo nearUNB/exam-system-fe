@@ -29,6 +29,7 @@
   border: 1px solid #ddd;
   font-size: 14px;
   transition: border 0.2s;
+  box-sizing: border-box;
 }
 
 .register-card input:focus {
@@ -39,6 +40,10 @@
 .form-row {
   display: flex;
   gap: 10px;
+}
+
+.form-row input {
+  flex: 1;
 }
 
 .register-card button {
